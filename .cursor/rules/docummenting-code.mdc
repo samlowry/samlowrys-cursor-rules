@@ -1,0 +1,39 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+# Code Documentation Standards
+
+When modifying code, always follow these documentation principles:
+
+## Comment Preservation
+- Never remove existing comments when modifying code
+- Update existing comments to reflect changes in functionality
+- Preserve the style and format of existing comments
+
+## New Code Documentation
+- Add descriptive comments for all new functions, classes, and complex logic
+- Document the purpose, parameters, return values, and exceptions
+- Use JSDoc/TSDoc style for JavaScript/TypeScript files
+- Use docstrings for Python files
+- Include examples for non-obvious implementations
+
+## Comment Updates
+- When changing functionality, update the associated comments
+- If refactoring code, ensure comments remain accurate
+- When fixing bugs, add a comment explaining the fix and why it works
+
+## Code Deletion
+- When removing code, document why it was removed in nearby comments
+- If functionality is being replaced, add a comment referencing the new implementation
+
+## Comment Style Guidelines
+- Write comments in complete sentences
+- Use present tense for describing what code does
+- Be concise but thorough
+- Avoid redundant comments that simply restate the code
+- Focus on explaining "why" rather than "what" when the code is self-explanatory
+
+@file ../package.json

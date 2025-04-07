@@ -1,0 +1,125 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+
+# Testing Requirements
+
+## Test Coverage Rules
+
+1. **New Code Components**
+   - Every new component, hook, or utility function MUST have corresponding unit tests
+   - Tests should be placed in either:
+     - Same directory with `.test.tsx` or `.test.ts` suffix
+     - `__tests__` directory at the same level as the component
+   - Test file naming should match the source file (e.g., `Component.tsx` → `Component.test.tsx`)
+
+2. **Test Content Requirements**
+   - Tests MUST cover:
+     - Basic rendering/functionality
+     - Edge cases and error states
+     - All props and their variations
+     - User interactions (clicks, inputs, etc.)
+     - Async operations
+     - Integration with context providers
+     - Error handling
+     - Loading states
+
+3. **Code Modifications**
+   - When modifying existing code:
+     - Review and update related tests
+     - Add tests for new functionality
+     - Verify existing tests still pass
+     - Add test cases for any bugs found
+   - When refactoring:
+     - Ensure test coverage remains the same or improves
+     - Update test descriptions to match new behavior
+     - Don't remove tests unless the functionality is removed
+
+4. **Testing Patterns**
+   - Use descriptive test names that explain the behavior being tested
+   - Follow the Arrange-Act-Assert pattern
+   - Mock external dependencies appropriately
+   - Test both success and failure scenarios
+   - Use proper cleanup in `beforeEach`/`afterEach`
+   - Keep tests focused and atomic
+
+5. **Testing Tools**
+   - Use Vitest for test running and assertions
+   - Use React Testing Library for component testing
+   - Use `vi.mock()` for mocking dependencies
+   - Use `vi.fn()` for mock functions
+   - Use `screen` queries from Testing Library
+
+## Example Test Structure
+
+```typescript
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { render, screen, fireEvent } from '@testing-library/react';
+
+describe('ComponentName', () => {
+  // Setup and mocks
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it('should render correctly', () => {
+    // Arrange
+    render(<Component />);
+    
+    // Act & Assert
+    expect(screen.getByText('expected text')).toBeInTheDocument();
+  });
+
+  it('should handle user interactions', () => {
+    // Arrange
+    const onClickMock = vi.fn();
+    render(<Component onClick={onClickMock} />);
+    
+    // Act
+    fireEvent.click(screen.getByRole('button'));
+    
+    // Assert
+    expect(onClickMock).toHaveBeenCalled();
+  });
+});
+```
+
+## Common Test Cases
+
+1. **Components**
+   - Rendering with default props
+   - Rendering with all prop variations
+   - User interactions
+   - Loading states
+   - Error states
+   - Integration with contexts
+   - Responsive behavior
+
+2. **Hooks**
+   - Initial state
+   - State updates
+   - Side effects
+   - Cleanup
+   - Error handling
+   - Integration with other hooks
+
+3. **Utilities**
+   - Success cases
+   - Error cases
+   - Edge cases
+   - Input validation
+   - Type checking
+
+## Test Quality Checklist
+
+- [ ] Tests are readable and maintainable
+- [ ] Tests are reliable (no flaky tests)
+- [ ] Tests are fast
+- [ ] Tests are independent
+- [ ] Tests verify behavior, not implementation
+- [ ] Tests have meaningful assertions
+- [ ] Tests cover edge cases
+- [ ] Tests mock external dependencies appropriately
+- [ ] Tests clean up after themselves 

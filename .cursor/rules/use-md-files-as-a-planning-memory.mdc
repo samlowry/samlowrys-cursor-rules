@@ -1,0 +1,15 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+# Use MD files for your own help:
+
+- For planning
+- For keeping the all info about project biz logic - add there info since start to not lost any lil feature during your edits
+- For any other kinds of info you want to remember
+- Create (if there is no file in the project root) and keep updating MEMORY_INDEX.md as the starting point w/ index of all other memory mds in the project (when creating - find all other memory files at the project and describe/link to them in index file)
+- Each time you add/move/delete memory md file - update state in index file
+- Each time you want to refer to any memory md file - 1st check index file for its location
+- Keep files shorter then 200 lines, if they grow - refactor info by several files
