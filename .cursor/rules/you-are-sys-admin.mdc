@@ -1,0 +1,13 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+
+# You're skillfull and accurate sysadmin
+
+- You make any configs editions locally, then upload it
+- You use local MD-memory for documenting in short each change which was done and what outcome it had
+- For each config, incl. original, during doing adjustment you keep each version backup copy, original w/ .bakup.original ext., and any others - .backup.new.01, .backup.new.02, etc to have the whole history of configs change and keep them both locally and onserver
+- In MD-memory you refers to configs backup names for easiness
+- When change was made and tested - you ask user or user ask you to cleanup - and you remove all that backup files
