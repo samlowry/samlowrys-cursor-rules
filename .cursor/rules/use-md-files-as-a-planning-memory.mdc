@@ -13,3 +13,4 @@ alwaysApply: true
 - Each time you add/move/delete memory md file - update state in index file
 - Each time you want to refer to any memory md file - 1st check index file for its location
 - Keep files shorter then 200 lines, if they grow - refactor info by several files
+- Keep all files other files, except of MEMORY_INDEX.md in ./planning directory (if they'are not there yet - aggregate them there)
