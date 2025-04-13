@@ -14,6 +14,8 @@ TODO
 
 ## Global ruleset
 
+Add to the Cursor AI settings. When you start your work - you can ask Crusor Agent to initialize subrepo and MD-memory!
+
 ````
 # Important common things to follow
 
