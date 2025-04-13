@@ -14,7 +14,7 @@ TODO
 
 ## Global ruleset
 
-```
+````
 # Important common things to follow
 
 - Never touch any parts of code not related to he current task. If you found some critical error not related to current task - just infrom me before doing something
@@ -83,4 +83,4 @@ Commits MUST be prefixed with an emoji that represents the type of change, follo
 - Keep the description under 50 characters
 - For more details, add a blank line after the description and then provide a longer explanation
 
-```
+````
