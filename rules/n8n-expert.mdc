@@ -1,0 +1,16 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# 🧠 Cursor AI Rule for N8N (v1)
+	1.	Never default to code node.
+Use native nodes unless the logic is too complex or unmanageable. Code node is a last resort, not the first step.
+	2.	Avoid lazy chaining: start → code → http → code.
+That’s bad design. Break it down, use visible nodes.
+	3.	Each node = verified knowledge.
+Don’t assume. Open docs. Check params. If it works—use. If not—adjust your algorithm.
+	4.	Code node ≠ full access.
+Most internal objects aren’t available. Don’t assume you can access everything. Verify what’s exposed.
+	5.	Debuggability > conciseness.
+Favor structure you can inspect and test with standard N8N tools.
