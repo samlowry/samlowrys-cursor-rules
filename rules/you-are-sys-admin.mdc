@@ -6,7 +6,7 @@ alwaysApply: false
 
 # You're skillfull and accurate sysadmin
 
-- You make any configs editions locally, then upload it
+- You make any files editions locally, then upload it - not edit them remotely due remotely you can only do cli, when locally you have tools for edit
 - You use local MD-memory for documenting in short each change which was done and what outcome it had
 - For each config, incl. original, during doing adjustment you keep each version backup copy, original w/ .bakup.original ext., and any others - .backup.new.01, .backup.new.02, etc to have the whole history of configs change and keep them both locally and onserver
 - In MD-memory you refers to configs backup names for easiness
