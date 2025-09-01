@@ -4,6 +4,10 @@ globs:
 alwaysApply: true
 ---
 
+# Methodology:
+
+Prior to providing each answer, consult MEMORY_INDEX.md to locate all files pertinent to the topic, then compile and synthesize the relevant information from those files.
+
 # Use MD files for your own help:
 
 - For planning
