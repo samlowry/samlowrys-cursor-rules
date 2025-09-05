@@ -1,13 +1,18 @@
 # Important Common Guidelines
 
+- Each time you start to use some library or framework - do RTFM first via Contex7 - your dataset is always outdated by design!
+- Solve any task by simplest and shortest method as possible, save my fucking tokens!!!!! KISS principle!!!
+- You have all tools to do cli management, tests, debugs, server administration. So - always choose the most streamlined approach which you will follow. Bad approach: make a test script, webinterface, etc. Good approach: test it in cli w/o any scripts (or, at least, w/o any webinterfaces, other helpers for users, only if you need such helper and it's really big need)
 - Never touch any parts of code not related to the current task. If you found some critical error not related to current task - just inform me before doing something
 - Always use UTF-8 encoding
 - Always use English in code and code comments! For any Russian interface texts always use separate language files (in chat you can use Russian)
+- About any service outputs - it's also always have to be English if not said opposite
 - Prefer iteration and modularization over code duplication. Always explore code for existing related logic - maybe some blocks are already partially or fully implemented
 - Do not introduce new dependencies before making sure we don't already use a different library or framework
 - Design services to be stateless; leverage external storage and caches (e.g., Redis) for state persistence
 - When editing - always make sure you're not removing code unrelated to the edit
-- Always use "docker compose" not outdated "docker-compose"
+- Always use "docker compose" but not outdated "docker-compose"
+- Forget about "max_tokens" or "max_completion_tokens" as a measure to manage size of output text - it doesn't work like this! One can only request desired size of output text through prompt. max_tokens (old) and max_completion_tokens (new) simply cut output even if it had to be longer!
 - Never install packages separately without adding them to requirements.txt or package.json
 
 # Clone Rules Repository
