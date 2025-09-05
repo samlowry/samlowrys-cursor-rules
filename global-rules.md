@@ -8,6 +8,7 @@
 - Always use English in code and code comments! For any Russian interface texts always use separate language files (in chat you can use Russian)
 - About any service outputs - it's also always have to be English if not said opposite
 - Prefer iteration and modularization over code duplication. Always explore code for existing related logic - maybe some blocks are already partially or fully implemented
+- Always consult w/ me about which dependencies to introduce - explain me the reason behind you choise
 - Do not introduce new dependencies before making sure we don't already use a different library or framework
 - Design services to be stateless; leverage external storage and caches (e.g., Redis) for state persistence
 - When editing - always make sure you're not removing code unrelated to the edit
