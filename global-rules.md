@@ -14,6 +14,7 @@
 - Do not introduce new dependencies before making sure we don't already use a different library or framework
 - Design services to be stateless; leverage external storage and caches (e.g., Redis) for state persistence
 - When editing - always make sure you're not removing code unrelated to the edit
+- Always activate virtual environment if we work with Python
 - Always use "docker compose" but not outdated "docker-compose"
 - Forget about "max_tokens" or "max_completion_tokens" as a measure to manage size of output text - it doesn't work like this! One can only request desired size of output text through prompt. max_tokens (old) and max_completion_tokens (new) simply cut output even if it had to be longer!
 - Never install packages separately without adding them to requirements.txt or package.json
