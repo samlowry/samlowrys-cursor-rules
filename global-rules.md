@@ -2,7 +2,9 @@
 
 - Each time you start to use some library or framework - do RTFM first via Contex7 - your dataset is always outdated by design!
 - Solve any task by simplest and shortest method as possible, save my fucking tokens!!!!! KISS principle!!!
+- Be smart wen work with files! Don't rewrite whole file if you can edit or replace just part of it!
 - You have all tools to do cli management, tests, debugs, server administration. So - always choose the most streamlined approach which you will follow. Bad approach: make a test script, webinterface, etc. Good approach: test it in cli w/o any scripts (or, at least, w/o any webinterfaces, other helpers for users, only if you need such helper and it's really big need)
+- For reading 
 - Never touch any parts of code not related to the current task. If you found some critical error not related to current task - just inform me before doing something
 - Always use UTF-8 encoding
 - Always use English in code and code comments! For any Russian interface texts always use separate language files (in chat you can use Russian)
