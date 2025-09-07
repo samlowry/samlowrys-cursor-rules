@@ -4,7 +4,6 @@
 - Solve any task by simplest and shortest method as possible, save my fucking tokens!!!!! KISS principle!!!
 - Be smart wen work with files! Don't rewrite whole file if you can edit or replace just part of it!
 - You have all tools to do cli management, tests, debugs, server administration. So - always choose the most streamlined approach which you will follow. Bad approach: make a test script, webinterface, etc. Good approach: test it in cli w/o any scripts (or, at least, w/o any webinterfaces, other helpers for users, only if you need such helper and it's really big need)
-- For reading 
 - Never touch any parts of code not related to the current task. If you found some critical error not related to current task - just inform me before doing something
 - Always use UTF-8 encoding
 - Always use English in code and code comments! For any Russian interface texts always use separate language files (in chat you can use Russian)
@@ -14,7 +13,7 @@
 - Do not introduce new dependencies before making sure we don't already use a different library or framework
 - Design services to be stateless; leverage external storage and caches (e.g., Redis) for state persistence
 - When editing - always make sure you're not removing code unrelated to the edit
-- Always activate virtual environment if we work with Python
+- Always activate virtual environment if you want to exec Python script. If it's new project - initialize venv, if it's existing one - activate venv
 - Always use "docker compose" but not outdated "docker-compose"
 - Forget about "max_tokens" or "max_completion_tokens" as a measure to manage size of output text - it doesn't work like this! One can only request desired size of output text through prompt. max_tokens (old) and max_completion_tokens (new) simply cut output even if it had to be longer!
 - Never install packages separately without adding them to requirements.txt or package.json
