@@ -1,39 +1,84 @@
 ---
-description: 
+description: Mandatory code documentation standards - all functions must have proper docs (JSDoc/TSDoc for JS/TS, docstrings for Python), complex logic explained, business reasoning documented. Code is incomplete without proper documentation.
 globs: 
 alwaysApply: true
 ---
 
 # Code Documentation Standards
 
-When modifying code, always follow these documentation principles:
+## Mandatory Documentation Requirements
 
-## Comment Preservation
+**ALL code must be properly documented before considering any task complete:**
+
+### Function Documentation
+- Every function must have proper documentation with:
+  - Parameters with types and descriptions
+  - Return value description and type
+  - Exceptions that can be thrown
+  - Brief description of purpose and behavior
+- Complex algorithms must have step-by-step explanations
+- Business logic must include "why" explanations, not just "what"
+
+### Code Structure Documentation
+- All major code sections must have descriptive headers
+- Constants and configuration must be documented with purpose
+- Complex data structures must have inline explanations
+- API endpoints must document request/response formats
+
+### Comment Quality Standards
+- Write comments in complete sentences
+- Use present tense for describing what code does
+- Be concise but thorough
+- Focus on explaining "why" rather than "what" when code is self-explanatory
+- Avoid redundant comments that simply restate the code
+
+## When Modifying Existing Code
+
+### Comment Preservation
 - Never remove existing comments when modifying code
 - Update existing comments to reflect changes in functionality
 - Preserve the style and format of existing comments
+- If existing code lacks documentation, add it during modification
 
-## New Code Documentation
-- Add descriptive comments for all new functions, classes, and complex logic
-- Document the purpose, parameters, return values, and exceptions
-- Use JSDoc/TSDoc style for JavaScript/TypeScript files
-- Use docstrings for Python files
-- Include examples for non-obvious implementations
-
-## Comment Updates
+### Documentation Updates
 - When changing functionality, update the associated comments
 - If refactoring code, ensure comments remain accurate
 - When fixing bugs, add a comment explaining the fix and why it works
 
-## Code Deletion
+### Code Deletion
 - When removing code, document why it was removed in nearby comments
 - If functionality is being replaced, add a comment referencing the new implementation
 
-## Comment Style Guidelines
-- Write comments in complete sentences
-- Use present tense for describing what code does
-- Be concise but thorough
-- Avoid redundant comments that simply restate the code
-- Focus on explaining "why" rather than "what" when the code is self-explanatory
+## Documentation Standards by Language
+
+### JavaScript/TypeScript
+- Use JSDoc/TSDoc style for all functions
+- Include examples for non-obvious implementations
+- Document complex object structures and API contracts
+
+### Python
+- Use docstrings for all functions and classes
+- Follow PEP 257 docstring conventions
+- Include type hints in docstrings when not using type annotations
+- Use triple quotes for multi-line docstrings
+
+### Other Languages
+- Follow language-specific documentation conventions
+- Ensure documentation is comprehensive and consistent
+
+## Quality Assurance
+
+**Before marking any task as complete:**
+1. Verify every function has proper documentation
+2. Check that all complex logic is explained
+3. Ensure business logic includes "why" explanations
+4. Confirm code is understandable without external documentation
+5. Validate that existing comments were preserved/enhanced, not replaced
+
+**Code is considered incomplete if:**
+- Any function lacks proper documentation
+- Complex algorithms are unexplained
+- Business logic lacks "why" context
+- Existing comments were removed without enhancement
 
 @file ../package.json
