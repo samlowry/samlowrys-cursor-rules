@@ -4,17 +4,166 @@ globs:
 alwaysApply: true
 ---
 
-# Methodology:
+Scope
+- Governs creation, retrieval, updates, canonicalization, and migration of Markdown-based project memory.
+- Goal: make “find and apply the correct methodology” deterministic and prevent loss of prior work.
 
-Prior to providing each answer, consult MEMORY_INDEX.md to locate all files pertinent to the topic, then compile and synthesize the relevant information from those files.
+Directories & Files
+- Memory index: MEMORY_INDEX.md (project root). Single source of links to all memory artifacts.
+- Working memory: ./planning/*.md — all memory files (except the index) live here.
+- Mandatory: if a memory file is found outside ./planning, move it there and update the index.
 
-# Use MD files for your own help:
+General Principles
+- Use Markdown memory for:
+  - Planning
+  - Business/domain logic (record decisions and nuances from the start)
+  - Any facts that must be remembered across sessions
+- If MEMORY_INDEX.md is missing, create it and index all existing memory files with links and short descriptions.
+- After every add/move/delete, update the index.
+- Before referring to any memory file, first consult MEMORY_INDEX.md for its location and status.
+- Keep files under 200 lines; if larger, split into multiple themed files and link them in the index.
+- Keep all memory files (except MEMORY_INDEX.md) in ./planning.
 
-- For planning
-- For keeping the all info about project biz logic - add there info since start to not lost any lil feature during your edits
-- For any other kinds of info you want to remember
-- Create (if there is no file in the project root) and keep updating MEMORY_INDEX.md as the starting point w/ index of all other memory mds in the project (when creating - find all other memory files at the project and describe/link to them in index file)
-- Each time you add/move/delete memory md file - update state in index file
-- Each time you want to refer to any memory md file - 1st check index file for its location
-- Keep files shorter then 200 lines, if they grow - refactor info by several files
-- Keep all files other files, except of MEMORY_INDEX.md in ./planning directory (if they'are not there yet - aggregate them there)
+YAML Front Matter (required for every .md)
+---
+title: Short name
+description: 1–3 sentence TL;DR
+type: methodology|report|log|dataset|adr|moc|checklist|query
+status: draft|active|canonical|deprecated|superseded
+project: <project id or name>
+tags: [<freeform tags>]
+buckets: [word_count_0_100, word_count_100_200, word_count_200_400]
+related: [<links to related files>]
+created_at: YYYY-MM-DD
+updated_at: YYYY-MM-DD
+owner: <role/team>
+canonical_of: <id of previous version if superseded>
+---
+
+Deterministic Retrieval Ritual (run BEFORE EVERY ANSWER)
+1) Open MEMORY_INDEX.md and locate relevant sections/MOCs and Saved Queries for the current topic.
+2) Search in this strict order:
+   a) Canonical sources: status == canonical and type in {adr, methodology, moc}.
+   b) Active sources: status == active and type in {methodology, report, checklist}.
+   c) Supporting materials: type in {resources, dataset, log}.
+3) Apply filters: tags, type, buckets, project, updated_at (prefer the most recent).
+4) Extract only TL;DRs, checklists, and the minimal sections needed; never paste whole files into context.
+5) If conflicting guidance is found:
+   - Prefer status == canonical. If none, pick the newest active.
+   - Log the conflict (type: log) and propose an ADR update.
+6) If a methodology is missing/ambiguous, create or update an ADR and set its status to canonical; link it from the index.
+7) Never compose an answer without completing steps 1–4. In responses, reference the applied file names/ids rather than dumping content.
+
+Authoring & Maintenance
+- On any add/move/delete, update MEMORY_INDEX.md sections: Canonical, Active, Reports, Datasets, Logs, MOCs, ADRs, Saved Queries.
+- Each methodology must include:
+  - TL;DR (3–6 lines), an Application Checklist, Saved Queries examples, and links to source reports/datasets.
+- Each report/log must include a short abstract and links to primary data.
+- MOCs (Maps of Content) are navigational hubs with annotated link lists only (no large bodies).
+- ADRs (Architecture Decision Records) capture decisions, alternatives, consequences; supersede old ones rather than rewriting history.
+
+Saved Queries in MEMORY_INDEX.md
+- Keep pre-defined filters/links for repeatable tasks (e.g., word_count buckets).
+- Example:
+  - Query: pages_lt_400
+    filter: type in [dataset, report] AND (tags HAS word_count OR buckets HAS any of [word_count_0_100, word_count_100_200, word_count_200_400])
+    method: see canonical methodology "content-selection-lt-400"
+    outputs: links to current bucketed selections
+
+Context Hygiene
+- Pull only N short fragments (TL;DRs, checklists, final conclusions).
+- If context is tight, prioritize canonical ADRs/methodologies and MOC summaries, then short reports.
+
+Templates
+
+ADR template (./planning/adr/*.md)
+---
+title: ADR: <concise decision>
+status: proposed|accepted|superseded
+context: <why this was needed>
+decision: <what was decided>
+alternatives: [<alt 1>, <alt 2>]
+consequences: <tradeoffs and constraints>
+links: [<related methodologies/reports>]
+date: YYYY-MM-DD
+supersedes: <id of previous ADR if any>
+---
+
+Methodology template (example for “< 400 words” rule)
+---
+title: content-selection-lt-400
+type: methodology
+status: canonical
+tags: [content, selection, word_count, buckets]
+description: Select records from the master export only when word_count < 400; use buckets 0–100, 100–200, 200–400.
+buckets: [word_count_0_100, word_count_100_200, word_count_200_400]
+updated_at: YYYY-MM-DD
+---
+TL;DR
+- Use the master export <file_link>.
+- Selection: word_count < 400.
+- Buckets: 0–100, 100–200, 200–400.
+
+Application Checklist
+- Open Saved Query: pages_lt_400 in MEMORY_INDEX.md.
+- Verify the dates for the latest export and bucketed reports.
+- Produce the page ID list for generation.
+- Write a run log (log/content-selection-YYYYMMDD.md).
+
+Saved Queries
+- pages_lt_400 — links to current bucketed selections.
+
+Links
+- report: grouped_by_buckets.md
+- dataset: full_export_with_word_counts.csv.md
+- adr: ADR: content-selection-threshold-400
+
+Auto‑Migration (from older memory layouts)
+Triggers
+- On project initialization, first agent run in the repo, or when explicitly requested.
+
+Legacy symptoms
+- Missing MEMORY_INDEX.md; memory files scattered outside ./planning; missing YAML front matter; no MOCs/ADRs/metadata.
+
+Migration plan (idempotent)
+1) Backup: create ./planning/_archive_pre_migration_YYYYMMDD_HHMMSS and copy original files.
+2) Ensure ./planning exists.
+3) Move all memory-related .md files (excluding README/technical docs as needed) into ./planning.
+4) Add YAML front matter per this policy:
+   - Infer type: methodology/report/log/dataset/adr/moc/checklist/query.
+   - Set status: canonical if it is the current methodology; otherwise active or draft.
+   - Populate tags, buckets, project, and dates if known.
+5) Split files > 200 lines into coherent parts; connect with related in YAML.
+6) Generate MEMORY_INDEX.md with sections: Canonical, Active, Reports, Datasets, Logs, MOCs, ADRs, Saved Queries.
+7) Create/update MOC hubs for major topics/projects.
+8) Create ADRs for canonical methods if decisions exist in prose but are not formalized.
+9) Build Saved Queries for repeatable tasks (e.g., pages_lt_400).
+10) Verification: run the Deterministic Retrieval Ritual on a test query; if issues arise, log them and emit manual follow-ups.
+
+Safety
+- Never overwrite without a backup; on conflicts, keep both versions with suffixes and log the conflict.
+- Re-running migration should only reconcile YAML and update the index (no duplicates).
+
+Manual fallback command (if auto‑migration does not run)
+Command: migratemdmem
+
+Usage
+  migratemdmem --dry-run|--apply [--source <path>] [--planning-dir ./planning] [--backup-dir ./planning/_archive_pre_migration_<ts>] [--split-threshold 200] [--infer-tags] [--force]
+
+Actions
+- Scan the repo for legacy memory layout.
+- Create backup, move files into ./planning, add/fix YAML.
+- Split long files, connect related, generate MEMORY_INDEX.md, create MOCs/ADRs/Saved Queries.
+- Write a migration report: ./planning/migration_log_<ts>.md.
+
+Flags
+- --dry-run: plan only, no changes.
+- --apply: perform changes.
+- --infer-tags: derive tags heuristically from content.
+- --force: rewrite index/metadata if conflicts are detected.
+
+Pre‑Answer QA (must pass before answering)
+- Confirm MEMORY_INDEX.md was opened and Saved Queries were used.
+- Confirm only canonical/active sources were applied.
+- Ensure responses include only TL;DRs and checklists (no large report dumps).
+- If gaps were found, open an ADR or create a follow-up task/log entry.
